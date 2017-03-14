@@ -3,9 +3,7 @@ def process( m , f, c ) :
     #Make list of all possible children: 
     possC = []
     
-    
-    for i in range(len(m)): 
-        
+    for i in range(len(m)):
         for j in range(len(f)) :
             
             geneM = m[i]
@@ -13,16 +11,7 @@ def process( m , f, c ) :
             
             listM = list(str(geneM))
             listF = list(str(geneF))
-            
-##            print(" ") 
-##            print("single male entry broken up") 
-##            print(listM)
-##            
-##            print(" ") 
-##            print("single female entry broken up") 
-##            print(listF)
-            
-            
+
             #compare genes and add possible C genes to list
             child = ""        
             
@@ -42,14 +31,8 @@ def process( m , f, c ) :
                 
     
             possC.append(child)
-                
-##    print(" ") 
-##    print("list of possible children: ")
-##    print(possC)
-##    print(" ") 
     
-    
-    ##################################################################
+##################################################################
     
     #Compare actual Children to possible children and record gene matches
     for key in range(len(c)):
@@ -83,9 +66,8 @@ def process( m , f, c ) :
         
         #add max number of matches to value of specific child
         c[key][1] = maxMatch
-       
-    
-    #####################################################################
+
+#####################################################################
         
     #iterate through children list, and output number of mutations.
     #mutation = length of gene list - 
@@ -102,11 +84,7 @@ def process( m , f, c ) :
         
         print("Child "+ str(num) + " has a minimum of " + str(mutation) + " mutations.")
 
-
-        
-        
 ######################################################
-
 
 #Read input file
 
@@ -125,8 +103,7 @@ numC = 0
 for line in textFile :
     
     l = line.strip().split()
-    
-    
+
     #in one set, add each line to m, f, or c lists
     if l[0] != "X" :
         
@@ -144,27 +121,17 @@ for line in textFile :
             
             c[numC] = [ l[1] , 0 ]
             numC += 1
-            
-            
-        
+
     #if line is X, call process function
     #clear m, f, c lists/dictionaries
-    
-    
     if l[0] == "X" :
         
         if countX == 1: 
             break
-        
         countX += 1
-        
-        
         process( m, f, c)
         
         m = []
         f = [] 
         c = {0 : [] }
         numC = 0
-         
-        
-#################################################       
