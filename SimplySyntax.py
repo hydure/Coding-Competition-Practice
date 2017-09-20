@@ -7,7 +7,12 @@ for word in fileinput.input():
     acceptedSentences = 0
 
     # Look through word in reverse order
-    for char in word[::-1]:
+    for char in word[::-1].strip():
+        
+        # If one of the rules are broken, then rejected like prom night
+        if char in ['a','b', 'c','d','e','f','g','h','i','j','k','l','m','n','o']:
+            print("NO")
+            break
         
         if char in ['p','q','r','s','t','u','v','x','y','z']:
             acceptedSentences += 1
@@ -18,13 +23,14 @@ for word in fileinput.input():
             break
         
         # If one of the rules are broken, then rejected like prom night
-        if char in ['C', 'D', 'E', 'I'] and acceptedSentences != 2:
+        elif char in ['C', 'D', 'E', 'I'] and acceptedSentences != 2:
             print("NO")
             break
+    
         # This is the first char in the sentence
-        if char == word[0]:
-            print("YES")
-
+        elif char == word[0] and acceptedSentences > 0:
+            print("YES") 
+            break
 '''
 Here are the rules:
 
