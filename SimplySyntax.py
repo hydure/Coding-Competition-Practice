@@ -1,5 +1,4 @@
 import fileinput
-import string
 
 for word in fileinput.input():
 
@@ -8,29 +7,27 @@ for word in fileinput.input():
 
     # Look through word in reverse order
     for char in word[::-1].strip():
-        
-        # If one of the rules are broken, then rejected like prom night
-        if char in ['a','b', 'c','d','e','f','g','h','i','j','k','l','m','n','o']:
-            print("NO")
-            break
-        
+
+        # Check if Rule 1 is followed
         if char in ['p','q','r','s','t','u','v','x','y','z']:
             acceptedSentences += 1
-        
-        # If one of the rules are broken, then rejected like prom night
-        if char == 'N' and acceptedSentences == 0:
-            print("NO")
-            break
-        
-        # If one of the rules are broken, then rejected like prom night
-        elif char in ['C', 'D', 'E', 'I'] and acceptedSentences != 2:
-            print("NO")
+
+        # Check if Rule 3 is followed
+        elif char in ['C', 'D', 'E', 'I'] and acceptedSentences >= 2:
+            acceptedSentences -= 1
+
+        # Check if Rule 2 is followed 
+        elif char == 'N' and acceptedSentences >= 1:
+            pass
+
+        else:
+            acceptedSentences = 0
             break
     
-        # This is the first char in the sentence
-        elif char == word[0] and acceptedSentences > 0:
-            print("YES") 
-            break
+    if (acceptedSentences == 1):
+        print("YES")
+    else:
+        print("NO")
 '''
 Here are the rules:
 
